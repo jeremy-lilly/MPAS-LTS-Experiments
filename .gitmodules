@@ -1,0 +1,3 @@
+[submodule "MPAS-Model"]
+	path = MPAS-Model
+	url = git@github.com:jeremy-lilly/MPAS-Model.git
