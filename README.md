@@ -1,4 +1,4 @@
-## `countRatio` ExperimentS-LTS-Experiments
+# MPAS-LTS-Experiments
 
 Proceedings from the 2021 PCSRI at LANL: Four experiments related to the performance and accuracy of local time-stepping (LTS) schemes as applied to the shallow water core of MPAS-Ocean.
 
