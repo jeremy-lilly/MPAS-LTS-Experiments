@@ -57,7 +57,7 @@ def main():
         ax.loglog(procTestsInts, timeIntData[iInterface, :], '-o')
         ax.loglog(procTestsInts, perfectScaling, '--', color='black')
         ax.grid('both')
-        ax.set(title=('numInterface = ' + interfaceTest),
+        ax.set(title=('numInterfaceLayers = ' + interfaceTest),
                xlabel='nProcs',
                ylabel='runtime (s)')
     # END for
@@ -83,7 +83,7 @@ def main():
         ax.plot(interfaceTestsInts, timeIntData[:, iProc], '-o')
         ax.grid('major')
         ax.set(title=('numProcs = ' + procTest),
-               xlabel='numInterface',
+               xlabel='numInterfaceLayers',
                ylabel='runtime (s)')
     # END for
     
