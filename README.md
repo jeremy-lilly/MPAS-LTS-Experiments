@@ -2,7 +2,7 @@
 
 Proceedings from the 2021 PCSRI at LANL: Four experiments related to the performance and accuracy of local time-stepping (LTS) schemes as applied to the shallow water core of MPAS-Ocean.
 
-***
+******
 
 ## Parameters
 
@@ -24,7 +24,7 @@ Here we describe the parameters referenced by the [script](https://github.com/je
 
 ## Experiments
 
-For reproducibility, we provide a description of the methodology of each experiment. Test cases for each experiment are based off of test case 5 from Williamson et al. and  were generated using [this script](https://github.com/jeremy-lilly/MPAS-Model/blob/local_time_stepping_rebase/testing_and_setup/sw/lts/build_test5.py).
+For reproducibility, we provide a description of the methodology of each experiment. The meshs used in each test case for each experiment are based off of test case 5 from Williamson et al. and  were generated using [this script](https://github.com/jeremy-lilly/MPAS-Model/blob/local_time_stepping_rebase/testing_and_setup/sw/lts/build_test5.py).
 
 ### `countRatio` Experiment
 
@@ -146,7 +146,6 @@ mpirun -n 128 sw_model namelist.sw streams.sw
 | 2.5 | 610 | 0.45 | 26 | 12 |
 | 1.25 | 450 | 0.43 | 50 | 6 |
 
-
 ### `numInterfaceLayers` Experiment
 
 The purpose of this experiment is to see how LTS3 scales across the number of MPI ranks for different values of `numInterfaceLayers`.
@@ -224,12 +223,12 @@ Each LTS3 test case was generated with a command of the form:
 
 The RK4 reference solution test case was generated with:
 ```
-./build_test5.py -f 50 -c 400 -s 6000 -d 0.1 -t 01:00:00 -r /path/to/MPAS-Model/repo -o /lustre//path/to/output/directory/refSol_rk4_01
+./build_test5.py -f 50 -c 400 -s 6000 -d 0.1 -t 01:00:00 -r /path/to/MPAS-Model/repo -o /path/to/output/directory/refSol_rk4_01
 ```
 
-In this way, each test case sits in its own directory within a single parent directory (this is the expected directory structure for running `make_countRatio_plot.py` from this shared parent directory):
+In this way, each test case sits in its own directory within a single parent directory (this is the expected directory structure for running `make_convergenceInM_plot.py` from this shared parent directory):
 ```
-/countRatio
+/convergenceInM
     /refSol_rk4_01      /15
     /1                  /30
     /5                  /60
