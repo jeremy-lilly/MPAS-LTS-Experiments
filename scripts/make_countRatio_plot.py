@@ -70,8 +70,8 @@ def main():
                            speedup,
                            nFine]).transpose()
     
-    pltFig, pltAx = plt.subplots(1, 1)
-    tblFig, tblAx = plt.subplots(1, 1)
+    pltFig, pltAx = plt.subplots(1, 1, figsize=(16, 9))
+    tblFig, tblAx = plt.subplots(1, 1, figsize=(16, 9))
     
     figSupTitle = 'Effect of the ratio of the number of coarse cells to number of fine cells on speedup'
     figTitle = 'nCoarseCells = 91,600 +/- 30, numInterface = 25, nVertLevels = 100, runTime = 00:30:00'
@@ -89,19 +89,12 @@ def main():
                                                  '% speedup',
                                                  'nFineCells'])
     table = tblAx.table(cellText=dataFrame.values, colLabels=dataFrame.columns, loc='center')
-    table.scale(1, 1.5)
+    table.scale(1, 2)
     tblAx.set(title=figTitle)
     tblFig.suptitle(figSupTitle)
 
-    pltFig.set_size_inches(16, 9)
-    tblFig.set_size_inches(16, 9)
-
-    ratio = 9 / 16
-    pltAx.set_aspect(1.0 / pltAx.get_data_ratio() * ratio)
-    tblAx.set_aspect(1.0 / tblAx.get_data_ratio() * ratio)
-    
-    pltFig.savefig('countRatio_speedup_plot.png')
-    tblFig.savefig('countRatio_speedup_table.png')
+    pltFig.savefig('countRatio_speedup_plot.png', bbox_inches='tight')
+    tblFig.savefig('countRatio_speedup_table.png', bbox_inches='tight')
     
 # END main()
 

@@ -81,8 +81,8 @@ def main():
                            rk4DT,
                            dtRatio]).transpose()
     
-    pltFig, pltAx = plt.subplots(1, 1)
-    tblFig, tblAx = plt.subplots(1, 1)
+    pltFig, pltAx = plt.subplots(1, 1, figsize=(16, 9))
+    tblFig, tblAx = plt.subplots(1, 1, figsize=(16, 9))
 
     figSupTitle = 'Effect of the ratio of coarse resolution to fine resolution on speedup'
     figTitle = 'coarseRes = 80.0 km, numInterface = 25, nVertLevels = 100, runTime = 00:30:00'
@@ -107,19 +107,12 @@ def main():
     table = tblAx.table(cellText=dataFrame.values,
                         colLabels=dataFrame.columns,
                         loc='center')
-    table.scale(1, 2)
+    table.scale(1, 3)
     tblAx.set(title=figTitle)
     tblFig.suptitle(figSupTitle)
    
-    pltFig.set_size_inches(16, 9)
-    tblFig.set_size_inches(16, 9)
-
-    ratio = 9 / 16
-    pltAx.set_aspect(1.0 / pltAx.get_data_ratio() * ratio)
-    tblAx.set_aspect(1.0 / tblAx.get_data_ratio() * ratio)
-
-    pltFig.savefig('resRatio_speedup_plot.png')
-    tblFig.savefig('resRatio_speedup_table.png')
+    pltFig.savefig('resRatio_speedup_plot.png', bbox_inches='tight')
+    tblFig.savefig('resRatio_speedup_table.png', bbox_inches='tight')
     
 # END main()
 

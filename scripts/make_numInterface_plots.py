@@ -57,7 +57,7 @@ def main():
         ax.loglog(procTestsInts, timeIntData[iInterface, :], '-o')
         ax.loglog(procTestsInts, perfectScaling, '--', color='black')
         ax.grid('both')
-        ax.set(title=('numInterfaceLayers = ' + interfaceTest),
+        ax.set(title=('numInterface = ' + interfaceTest),
                xlabel='nProcs',
                ylabel='runtime (s)')
     # END for
@@ -69,7 +69,7 @@ def main():
         scaleFig.delaxes(scaleAxes[-2])
 
     scaleFig.set_tight_layout(True)
-    scaleFig.savefig('numInterface_scaling_plot.png')
+    scaleFig.savefig('numInterface_scaling_plot.png', bbox_inches='tight')
 
 
     # interface runtime plots
@@ -83,7 +83,7 @@ def main():
         ax.plot(interfaceTestsInts, timeIntData[:, iProc], '-o')
         ax.grid('major')
         ax.set(title=('numProcs = ' + procTest),
-               xlabel='numInterfaceLayers',
+               xlabel='numInterface',
                ylabel='runtime (s)')
     # END for
     
@@ -91,7 +91,7 @@ def main():
         runtimeFig.delaxes(runtimeAxes[-1])
     
     runtimeFig.set_tight_layout(True)
-    runtimeFig.savefig('numInterface_runtime_plot.png')
+    runtimeFig.savefig('numInterface_runtime_plot.png', bbox_inches='tight')
 # END main()
 
 
