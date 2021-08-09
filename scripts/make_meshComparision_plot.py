@@ -2,9 +2,9 @@
 
 import os
 import sys
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 
 def main():
@@ -44,38 +44,52 @@ def main():
         speedups.append(point[2])
 
 
-    plt.scatter(countRatios, resolutionRatios, c=speedups, s=400)
-    plt.xlabel('countRatio')
-    plt.ylabel('resolutionRatio')
+    fig, ax = plt.subplots()
     
-    cbar = plt.colorbar()
+    ax.set(xlabel='count ratio = # coarse cells / # fine cells', ylabel='resolution ratio = coarse width / fine width',
+           title='MPAS meshes compared to SW LTS Experiments')
+    
+    cmap = plt.cm.jet
+    cmaplist = [cmap(i) for i in range(cmap.N)]
+    cmaplist.reverse()
+    cmap = mpl.colors.LinearSegmentedColormap.from_list('Custom cmap', cmaplist, cmap.N)
+
+    bounds = np.linspace(-30, 70, 11)
+    norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+    
+    ax.scatter(countRatios, resolutionRatios, c=speedups, s=400,
+               cmap=cmap, norm=norm)
+
+    cax = fig.add_axes([0.95, 0.1, 0.03, 0.8])
+    cbar = mpl.colorbar.ColorbarBase(cax, cmap=cmap, norm=norm,
+                                     spacing='proportional', ticks=bounds, boundaries=bounds, format='%1i')
+
+    #cbar = plt.colorbar()
     cbar.ax.set_ylabel('% speedup')
 
     # MPAS meshes
     
     # SOwISC12to60E2r4
-    plt.scatter(4.343, 5, c=0 , s=50, cmap='spring', label='SOwISC12to60E2r4')
+    ax.scatter(4.343, 5, c=0 , s=50, cmap='spring', label='SOwISC12to60E2r4')
     
     # ARRM60to10
-    plt.scatter(5.120, 6, c=0 , s=50, cmap='summer', label='ARRM60to10')
+    ax.scatter(5.120, 6, c=0 , s=50, cmap='summer', label='ARRM60to10')
     
     # ARRM60to6
-    plt.scatter(1.913, 10, c=0 , s=50, cmap='autumn', label='ARRM60to6')
+    ax.scatter(1.913, 10, c=0 , s=50, cmap='autumn', label='ARRM60to6')
     
     # WC14to60E2r3
-    plt.scatter(0.869, 4.286, c=0 , s=50, cmap='winter', label='WC14to60E2r3')
+    ax.scatter(0.869, 4.286, c=0 , s=50, cmap='winter', label='WC14to60E2r3')
     
     # WCAtl12to45E2r4
-    plt.scatter(1.900, 3.75, c=0 , s=50, cmap='cool', label='WCAtl12to45E2r4')
+    ax.scatter(1.900, 3.75, c=0 , s=50, cmap='cool', label='WCAtl12to45E2r4')
     
     # delawareBay
-    plt.scatter(0.788, 32, c=0 , s=50, cmap='gray', label='delawareBay2.5to80')
+    ax.scatter(0.788, 32, c=0 , s=50, cmap='gray', label='delawareBay2.5to80')
 
-    plt.legend()
+    ax.legend()
 
-    plt.title('MPAS-Meshes compared to SW LTS Experiments')
-    
-    plt.savefig('meshComparison.png', bbox_inches='tight')
+    fig.savefig('meshComparison.png', bbox_inches='tight')
 
 # END main()
 
