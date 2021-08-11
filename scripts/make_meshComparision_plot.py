@@ -27,7 +27,9 @@ def main():
                          (1.025, 8, 30.337),
                          (0.994, 16, 38.782),
                          (1.017, 32, 49.801),
-                         (0.955, 64, 54.045)]
+                         (0.955, 64, 54.045),
+                         (3.946, 16, 68.240),
+                         (3.965, 8, 58.254)]
 
     # trim certain points so plot is balanced
     ltsExperimentData.remove((0.955, 64, 54.045))
@@ -88,8 +90,11 @@ def main():
     ax.scatter(0.788, 32, c=0 , s=50, cmap='gray', label='delawareBay2.5to80')
 
     ax.legend()
+    ax.grid('major')
+    ax.set_yscale('log')
+    ax.set_xscale('log')
 
-    fig.savefig('meshComparison.png', bbox_inches='tight')
+    fig.savefig('meshComparisonLoglog.png', bbox_inches='tight')
 
 # END main()
 
