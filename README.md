@@ -26,6 +26,8 @@ Here we describe the parameters referenced by the [script](https://github.com/je
 
 For reproducibility, we provide a description of the methodology of each experiment. The meshs used in each test case for each experiment are based off of test case 5 from Williamson et al. and  were generated using [this script](https://github.com/jeremy-lilly/MPAS-Model/blob/local_time_stepping_rebase/testing_and_setup/sw/lts/build_test5.py).
 
+Versions of the below tables can be found in [this Google Sheet](https://docs.google.com/spreadsheets/d/1gHrDlKE96t8p19ZMaIgUTsLqxER1zlpJ7qwHHqyjKDE/edit?usp=sharing).
+
 ### `countRatio` Experiment
 
 The purpose of this experiment is to see how LTS3 performs compared to RK4 as we change the ratio of number of coarse cells to number of fine cells (`countRatio = nCoarseCells / nFineCells`). In order to vary `countRatio`, we fix a number of coarse cells and add more fine cells to the mesh by increasing `fineRadius`. Note that in practice, the number of coarse cells cannot be fixed as it is not directly controlled by the user -- rather it is determined by by the mesh generation software. We can however roughly "fix" this value by holding `coarseRegionDist` fixed.
